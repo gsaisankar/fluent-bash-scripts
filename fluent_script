@@ -1,0 +1,65 @@
+;----------- RECOMPILE UDF FROM GUI BEFORE SUBMITING THIS SCRIPT---------------------
+
+file/read-case cutcell_incline2_30_2.1mill_pout_m3600_p45inlet.cas 
+
+;file/read-data 0.45stdinit.dat
+
+;------ PRE SET commands --------------------------------
+;define/boundary-conditions velocity-inlet bot_interface phase-1 no no yes yes no V_L_val
+define/boundary-conditions zone-type inlet mass-flow-inlet
+define/boundary-conditions mass-flow-inlet inlet mixture yes no 0 no yes no no no yes 5 0.16
+define/boundary-conditions mass-flow-inlet inlet phase-1 yes no 2.211261 
+define/boundary-conditions mass-flow-inlet inlet phase-2 yes no 0.001938342 no yes no 0.45
+define/boundary-conditions pressure-outlet liq_outlet mixture no -3600 no yes no no no yes 5 0.16 no
+define/boundary-conditions pressure-outlet gas_outlet mixture no 0 no yes no no no yes 5 0.075 no
+define/boundary-conditions pressure-outlet gas_outlet phase-2 yes no 1
+;solve/initialize/set-defaults/phase-1 z-velocity -V_L_val
+
+;define/phases interaction-domain no no yes Schiller-naumann yes constant 0.4 no no no no 1 no 0 no no no 
+;define/phases phase-domain phase-3 phase-3 no no no constant Dia_val  ; diameter
+;define/phases interaction-domain no no no yes none constant cl_val no no no 0 no no no
+
+file/auto-save/data-frequency 1000 
+file/auto-save/append-file-name-with flow-time 6
+;file/auto-save/max-files 300
+file/auto-save/root-name "cutcell_incline2_30_2.1mill_pout_m3600_p45inlet"
+
+;/solve/execute-commands/add c1 5000 "iteration" "/display/set/contours/surfaces 6 ()"
+;/solve/execute-commands/add c2 5000 "iteration" "/display contour phase-2 vof 0 0.3"
+;/solve/execute-commands/add c3 5000 "iteration" "/display/views/camera position 5 0 0"
+;/solve/execute-commands/add c4 5000 "iteration" "/display/hc cup_0.5_3ring_0.066_2.6miltet_degas_%6t.jpg"
+;------ END of PRE SET commands -------------------------
+
+;------ Time Stepping -----------------------------
+
+;/define/user-defined/function-hooks adjust "cal_avg_Do2_conc_outlet::libudf"
+
+;/solve/monitors/surface set Outlet_o2_conc "Area-Weighted Average" mixture o2_conc_mg_lit_testing side_outlet () no no yes Outlet_o2_conc 50 yes flow-time
+
+;/solve/monitors/surface set Inlet_o2_conc "Area-Weighted Average" mixture o2_conc_mg_lit_testing top_inlet () no no yes Inlet_o2_conc 50 yes flow-time
+
+;/solve/monitors/volume set Vol_o2_conc "Volume-Average" mixture o2_conc_mg_lit_testing solid () no no yes Vol_o2_conc 50 yes flow-time
+
+;/solve/initialize repair-wall-distance
+/solve/initialize initialize-flow
+
+;solve/set/equations/phase-2 species-0 no 
+
+solve/set/time-step 0.005
+solve/dual-time-iterate 40000 20
+
+;------------
+
+;solve/set/equations/mixture flow no 
+;solve/set/equations/mixture ke no 
+;solve/set/equations/mixture mp no 
+
+;solve/set/time-step 0.0005
+;solve/dual-time-iterate 16000 20
+
+solve/set data-sampling yes 1 no no yes no 
+solve/set/time-step 0.005 
+solve/dual-time-iterate 1000 20
+
+exit
+yes

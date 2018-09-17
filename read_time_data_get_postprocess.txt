@@ -1,0 +1,24 @@
+#!/bin/bash
+ #script to postprocess G-L separator. 
+ #for the time vs mass flowrate plot
+
+rm flu_post_10
+echo "file/read-case empty.cas" >> flu_post_10
+
+for ((j=1;j<20;j++)) do 
+	
+	time=$(echo "scale=0;5*$j" | bc -l)
+
+	echo "file/read-data empty-9-${time}.000000.dat" >> flu_post_10
+	echo "/report/surface-integrals mass-flow-rate 2 () phase-1 yes liq_out yes" >> flu_post_10
+
+done
+
+# fluent 3ddp -t20 -pinfiniband -mpi=intel -gu -i < flu_p${ARRAY2[j]}_azi >> fluent_script.log
+
+# fluent 3ddp -t20 -pinfiniband -mpi=intel -gu -i < flu_post_10 >> fluent_script.log
+
+#declare -A matrix
+#num_rows=1
+#num_columns=5
+#matrix[$num_rows,$num_columns]=0.1 0.5 0.6 0.9 1.1

@@ -1,0 +1,26 @@
+#!/bin/bash
+#PBS -N medbaf_320k_Plom2200_vfp3-9
+#PBS -l nodes=10:ppn=16
+#PBS -l walltime=24:00:00
+#PBS -A hpc_epic_mike2
+
+#PBS -q workq 
+#PBS -o pbs.log
+#PBS -e pbs.err
+#PBS -m abe
+#PBS -M sganes3@lsu.edu
+
+cd $PBS_O_WORKDIR
+export NPROCS=`wc -l $PBS_NODEFILE |gawk '//{print $1}'`
+
+fluent 3ddp -t$NPROCS -cflush -pinfiniband -mpi=intel -cnf=$PBS_NODEFILE -gu -i < fluent_script >> fluent_script.log
+
+#fluent 2ddp -t$NPROCS -pinfiniband -mpi=intel -cnf=$PBS_NODEFILE -gu -i < fluent_script >> fluent_script.log
+
+# hpc_hpc_epic01 for smic
+# loni_epicmphase for qb2   
+# hpc_epic_kn04 for mike        nodes=10:ppn=16
+
+
+# fluent 3ddp -t20 -pinfiniband -mpi=intel -gu -i < fluent_script >> fluent_script.log  
+# use this for loading graphics options in a non-interactive mode

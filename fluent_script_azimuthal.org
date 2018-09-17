@@ -1,0 +1,76 @@
+;----------- RECOMPILE UDF FROM GUI BEFORE SUBMITING THIS SCRIPT---------------------
+
+file/read-case 3_Phase_Euler_Euler_SS_1p2M.cas 
+
+;solve/set data-sampling yes 1 no no 
+
+file/read-data latest_dat
+
+;/define/custom-field-functions define "mean_slip" phase_3_mean_z_velocity-phase_1_mean_z_velocity
+
+; overall azimuthal averaging. 
+; x^2+y^2 - c(radial distance) = 0 [equation for cylinder]
+; for our column [sqrt (radius) = 0.006859 is the maximum value of cylindrical diameter creation possible.]
+
+/surface quadric r_6000_cyl 1 0 1 0 0 0 0 0 0 -0.000036 0 
+/surface iso-surface mixture z-coordinate z_p5_r_6000 r_6000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_12000_cyl 1 0 1 0 0 0 0 0 0 -0.000144 0 
+/surface iso-surface mixture z-coordinate z_p5_r_12000 r_12000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_18000_cyl 1 0 1 0 0 0 0 0 0 -0.000324 0 
+/surface iso-surface mixture z-coordinate z_p5_r_18000 r_18000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_24000_cyl 1 0 1 0 0 0 0 0 0 -0.000576 0 
+/surface iso-surface mixture z-coordinate z_p5_r_24000 r_24000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_30000_cyl 1 0 1 0 0 0 0 0 0 -0.000900 0 
+/surface iso-surface mixture z-coordinate z_p5_r_30000 r_30000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_36000_cyl 1 0 1 0 0 0 0 0 0 -0.001296 0 
+/surface iso-surface mixture z-coordinate z_p5_r_36000 r_36000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_42000_cyl 1 0 1 0 0 0 0 0 0 -0.001764 0 
+/surface iso-surface mixture z-coordinate z_p5_r_42000 r_42000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_48000_cyl 1 0 1 0 0 0 0 0 0 -0.002304 0 
+/surface iso-surface mixture z-coordinate z_p5_r_48000 r_48000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_54000_cyl 1 0 1 0 0 0 0 0 0 -0.002916 0 
+/surface iso-surface mixture z-coordinate z_p5_r_54000 r_54000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_60000_cyl 1 0 1 0 0 0 0 0 0 -0.003600 0 
+/surface iso-surface mixture z-coordinate z_p5_r_60000 r_60000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_66000_cyl 1 0 1 0 0 0 0 0 0 -0.004356 0 
+/surface iso-surface mixture z-coordinate z_p5_r_66000 r_66000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_72000_cyl 1 0 1 0 0 0 0 0 0 -0.005184 0 
+/surface iso-surface mixture z-coordinate z_p5_r_72000 r_72000_cyl () bot_fluid () 0.5 () 
+/surface quadric r_78000_cyl 1 0 1 0 0 0 0 0 0 -0.006084 0 
+/surface iso-surface mixture z-coordinate z_p5_r_78000 r_78000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_84000_cyl 1 0 1 0 0 0 0 0 0 -0.007056 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_84000 r_84000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_90000_cyl 1 0 1 0 0 0 0 0 0 -0.008100 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_90000 r_90000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_96000_cyl 1 0 1 0 0 0 0 0 0 -0.009216 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_96000 r_96000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_102000_cyl 1 0 1 0 0 0 0 0 0 -0.010404 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_102000 r_102000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_108000_cyl 1 0 1 0 0 0 0 0 0 -0.011664 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_108000 r_108000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_114000_cyl 1 0 1 0 0 0 0 0 0 -0.012996 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_114000 r_114000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_120000_cyl 1 0 1 0 0 0 0 0 0 -0.014400 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_120000 r_120000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_126000_cyl 1 0 1 0 0 0 0 0 0 -0.015876 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_126000 r_126000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_132000_cyl 1 0 1 0 0 0 0 0 0 -0.007424 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_032000 r_132000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_138000_cyl 1 0 1 0 0 0 0 0 0 -0.019044 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_138000 r_138000_cyl () bot_fluid () 0.5 () 
+; /surface quadric r_144000_cyl 1 0 1 0 0 0 0 0 0 -0.020736 0 
+; /surface iso-surface mixture z-coordinate z_p5_r_144000 r_144000_cyl () bot_fluid () 0.5 () 
+
+; /report/surface-integrals area-weighted-avg z_p5_r_6000 z_p5_r_12000 z_p5_r_18000 z_p5_r_24000 z_p5_r_30000 z_p5_r_36000 z_p5_r_42000 z_p5_r_48000 z_p5_r_54000 z_p5_r_60000 z_p5_r_66000 z_p5_r_72000 z_p5_r_78000 z_p5_r_84000 z_p5_r_90000 z_p5_r_96000 z_p5_r_102000 z_p5_r_108000 z_p5_r_114000 z_p5_r_120000 z_p5_r_126000 z_p5_r_132000 z_p5_r_138000 z_p5_r_144000 () phase-1 mean-z-velocity  yes phase_1_mean_Vz 
+
+; /report/surface-integrals area-weighted-avg z_p5_r_6000 z_p5_r_12000 z_p5_r_18000 z_p5_r_24000 z_p5_r_30000 z_p5_r_36000 z_p5_r_42000 z_p5_r_48000 z_p5_r_54000 z_p5_r_60000 z_p5_r_66000 z_p5_r_72000 z_p5_r_78000 z_p5_r_84000 z_p5_r_90000 z_p5_r_96000 z_p5_r_102000 z_p5_r_108000 z_p5_r_114000 z_p5_r_120000 z_p5_r_126000 z_p5_r_132000 z_p5_r_138000 z_p5_r_144000 () phase-3 mean-vof  yes phase_3_azi_mean_vof
+
+; /report/surface-integrals area-weighted-avg z_p5_r_6000 z_p5_r_12000 z_p5_r_18000 z_p5_r_24000 z_p5_r_30000 z_p5_r_36000 z_p5_r_42000 z_p5_r_48000 z_p5_r_54000 z_p5_r_60000 z_p5_r_66000 z_p5_r_72000 z_p5_r_78000 z_p5_r_84000 z_p5_r_90000 z_p5_r_96000 z_p5_r_102000 z_p5_r_108000 z_p5_r_114000 z_p5_r_120000 z_p5_r_126000 z_p5_r_132000 z_p5_r_138000 z_p5_r_144000 () mixture mean_slip  yes azi_mean_slip_vel
+
+  /report/surface-integrals area-weighted-avg z_p5_r_6000 z_p5_r_12000 z_p5_r_18000 z_p5_r_24000 z_p5_r_30000 z_p5_r_36000 z_p5_r_42000 z_p5_r_48000 z_p5_r_54000 z_p5_r_60000 z_p5_r_66000 z_p5_r_72000 z_p5_r_78000 z_p5_r_84000 z_p5_r_90000 z_p5_r_96000 z_p5_r_102000 z_p5_r_108000 z_p5_r_114000 z_p5_r_120000 z_p5_r_126000 z_p5_r_132000 z_p5_r_138000 z_p5_r_144000 () phase-1 mean-z-velocity  yes azi_mean_phase_1_vel
+
+exit
+yes
+
+
+
