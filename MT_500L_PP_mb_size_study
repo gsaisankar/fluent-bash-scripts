@@ -1,0 +1,60 @@
+; Read CASE / Data file
+
+file/read-case Empty_master.cas 
+file/read-data 200.dat
+
+; Plane creation
+
+; Surface averaging on created planes
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-1 concentration-co-liquid yes molar_conc_200
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 molef-co yes molef_200
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 mean-vof yes mean_vof_200
+
+; Read CASE / Data file
+
+;file/read-case Empty_master.cas 
+file/read-data 400.dat
+
+; Plane creation
+
+; Surface averaging on created planes
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-1 concentration-co-liquid yes molar_conc_400
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 molef-co yes molef_400
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 mean-vof yes mean_vof_400
+
+; Read CASE / Data file
+
+;file/read-case Empty_master.cas 
+file/read-data 600.dat
+
+; Plane creation
+
+; Surface averaging on created planes
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-1 concentration-co-liquid yes molar_conc_600
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 molef-co yes molef_600
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 mean-vof yes mean_vof_600
+
+
+; Read CASE / Data file
+
+;file/read-case Empty_master.cas 
+file/read-data 800.dat
+
+; Plane creation
+
+; Surface averaging on created planes
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-1 concentration-co-liquid yes molar_conc_800
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 molef-co yes molef_800
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 mean-vof yes mean_vof_800
+
+; Read CASE / Data file
+
+;file/read-case Empty_master.cas 
+file/read-data 50.dat
+
+; Plane creation
+
+; Surface averaging on created planes
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-1 concentration-co-liquid yes molar_conc_50
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 molef-co yes molef_50
+report/surface-integrals/area-weighted-avg 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 () phase-3 vof yes mean_vof_50
